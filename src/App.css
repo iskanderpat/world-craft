@@ -1,448 +1,287 @@
-/* Complete App.css with drag and drop styling */
+/* App.css - COMPLETE FILE */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+  background-color: #fff;
   color: #333;
+  overflow: hidden;
 }
 
 .App {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.login-container, .register-container {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background: white;
-}
-
-form div {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.2s;
-}
-
-input:focus {
-  outline: none;
-  border-color: #4a90e2;
-}
-
-button {
-  background-color: #4a90e2;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-button:hover {
-  background-color: #357abD;
-}
-
-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.error {
-  color: #e74c3c;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #fdeded;
-  border-radius: 4px;
-}
-
-/* Modern Dashboard Layout */
-.modern-dashboard {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+}
+
+/* Infinite Dashboard Layout */
+.infinite-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .dashboard-header {
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
 }
 
 .dashboard-title {
   font-size: 24px;
   font-weight: 700;
+  color: #333;
 }
 
-.user-info {
+/* Target Bar */
+.target-bar {
   display: flex;
   align-items: center;
-  gap: 20px;
-}
-
-.user-gems {
-  display: flex;
-  align-items: center;
+  padding: 10px 20px;
   background-color: #f0f4f8;
-  padding: 8px 15px;
-  border-radius: 20px;
+  border-bottom: 1px solid #e6e9ed;
 }
 
-.gem-icon {
-  margin-right: 8px;
-}
-
-.gem-count {
+.target-title {
   font-weight: 600;
+  margin-right: 15px;
+  color: #444;
 }
 
-.logout-btn {
-  background-color: #f44336;
-  padding: 8px 15px;
-}
-
-/* Dashboard Content */
-.dashboard-content {
-  flex: 1;
-  padding: 20px;
-}
-
-/* Modern Crafting Area */
-.modern-crafting-area {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  text-align: center;
-  /* Drag and drop styles */
-  border: 2px dashed #eee;
-  transition: border-color 0.2s, background-color 0.2s;
-}
-
-.modern-crafting-area.drag-over {
-  border-color: #4a90e2;
-  background-color: #f8f9ff;
-}
-
-.crafting-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.crafting-instruction {
-  color: #666;
-  padding: 30px;
-}
-
-.crafting-elements {
+.target-items {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
-.crafting-element {
+.target-item {
+  padding: 8px 15px;
+  background-color: #e9ecef;
+  border-radius: 20px;
+  color: #666;
+  font-size: 14px;
+  border: 1px solid #dee2e6;
+  transition: all 0.2s;
+}
+
+.target-item.discovered {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+  font-weight: 600;
+}
+
+/* Main layout with crafting area and sidebar */
+.infinite-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Crafting area taking 80% of the width */
+.crafting-container {
+  flex: 4;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elements sidebar taking 20% of the width */
+.elements-sidebar {
+  flex: 1;
+  border-left: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  background-color: #f0f4f8;
-  padding: 15px;
-  border-radius: 8px;
-  min-width: 100px;
+  overflow: hidden;
+  background-color: #f8f9fa;
 }
 
-.crafting-plus {
-  font-size: 24px;
-  margin: 0 10px;
-}
-
-.craft-button {
-  background-color: #4CAF50;
-  padding: 12px 24px;
-}
-
-.clear-button {
-  background-color: #f44336;
-  margin-top: 20px;
-  padding: 8px 15px;
-}
-
-/* Elements Grid - Modern Style */
-.elements-grid-container {
-  margin-top: 20px;
-}
-
-.elements-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
+/* Search box in sidebar */
 .search-container {
-  position: relative;
-  flex: 1;
-  max-width: 400px;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
 }
 
 .search-input {
-  padding-right: 40px;
-}
-
-.search-icon {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-}
-
-.element-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.discoveries-btn, .sort-btn {
-  background-color: #f0f4f8;
-  color: #333;
+  width: 100%;
   padding: 10px 15px;
-  border-radius: 6px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.2s;
 }
 
-.elements-grid-modern {
+.search-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Elements grid in sidebar */
+.elements-sidebar-grid {
+  padding: 15px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
-  padding: 10px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .element-item {
   display: flex;
   align-items: center;
-  background-color: white;
-  border: 1px solid #eee;
-  border-radius: 6px;
   padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 20px;
   cursor: grab;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
   transition: all 0.2s;
 }
 
 .element-item:hover {
-  border-color: #4a90e2;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .element-item:active {
   cursor: grabbing;
 }
 
-.element-item.selected {
-  background-color: #e3f2fd;
-  border-color: #4a90e2;
-}
-
 .element-emoji {
-  margin-right: 10px;
+  margin-right: 12px;
   font-size: 20px;
 }
 
-/* History Section */
-.crafting-history {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.history-list {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.history-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.history-elements {
-  display: flex;
-  align-items: center;
-}
-
-.history-elements .plus,
-.history-elements .equals {
-  margin: 0 10px;
-  color: #666;
-}
-
-.history-elements .result {
-  font-weight: bold;
-  color: #4CAF50;
-}
-
-.discovery-time {
-  color: #999;
-  font-size: 0.8em;
-}
-
-/* Session Timer */
-.session-timer {
-  background-color: #f0f4f8;
-  border-radius: 20px;
-  padding: 8px 15px;
-}
-
-.timer-display {
-  display: flex;
-  align-items: center;
-}
-
-.timer-label {
-  margin-right: 8px;
-  font-weight: 500;
+.element-name {
   font-size: 14px;
-  color: #666;
+  font-weight: 500;
 }
 
-.timer-value {
-  font-weight: 600;
-  color: #4CAF50;
-}
-
-.session-timer.expired .timer-value {
-  color: #f44336;
-}
-
-.timer-expired-message {
-  color: #f44336;
-  margin-top: 8px;
-  font-size: 12px;
-}
-
-.extend-session-btn {
-  background-color: #4CAF50;
-  color: white;
-  font-size: 12px;
-  padding: 5px 10px;
-  margin-top: 8px;
-  display: block;
-}
-
-/* Crafting and History Layout */
-.crafting-and-history {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.crafting-section {
-  flex: 2;
-}
-
-.history-section {
-  flex: 1;
-}
-
-/* Error Message */
-.error-message {
-  color: #e74c3c;
-  background-color: #fdeded;
-  padding: 10px 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-/* Loading State */
-.loading {
-  text-align: center;
-  padding: 30px;
-  color: #666;
-}
-
-/* Discovery Modal */
-.discovery-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Infinite crafting area */
+.infinite-crafting-area {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  background-color: #fcfcfc;
+}
+
+.crafting-instruction {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  font-size: 18px;
+  width: 300px;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  border: 1px dashed #ddd;
+}
+
+.infinite-crafting-area.drag-over {
+  background-color: #f9f9f9;
+}
+
+/* Elements within crafting area */
+.crafting-element {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  width: 80px;
+  height: 80px;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.crafting-element:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.crafting-element:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.crafting-element .element-emoji {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.crafting-element .element-name {
+  font-size: 12px;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Sparkle Animation */
+.sparkle-animation {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  z-index: 100;
+  animation: sparkle 0.6s forwards;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.sparkle {
+  position: absolute;
+  border-radius: 50%;
+  transform-origin: center;
+}
+
+.spark1 { width: 10px; height: 10px; left: 35px; top: 20px; animation: spark1 0.6s forwards; }
+.spark2 { width: 8px; height: 8px; left: 50px; top: 35px; animation: spark2 0.6s forwards; }
+.spark3 { width: 12px; height: 12px; left: 35px; top: 50px; animation: spark3 0.6s forwards; }
+.spark4 { width: 7px; height: 7px; left: 20px; top: 35px; animation: spark4 0.6s forwards; }
+.spark5 { width: 9px; height: 9px; left: 35px; top: 35px; animation: spark5 0.6s forwards; }
+
+@keyframes spark1 { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(-15px, -15px); opacity: 0; }}
+@keyframes spark2 { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(15px, -15px); opacity: 0; }}
+@keyframes spark3 { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(15px, 15px); opacity: 0; }}
+@keyframes spark4 { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(-15px, 15px); opacity: 0; }}
+@keyframes spark5 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(0, 0) scale(2); opacity: 0; }}
+
+/* Loading state */
+.loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-}
-
-.discovery-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  max-width: 400px;
-  text-align: center;
-}
-
-.discovery-element {
-  margin: 30px 0;
-}
-
-.element-icon.large {
-  font-size: 60px;
-  margin-bottom: 20px;
-}
-
-.close-btn {
-  background-color: #4CAF50;
-}
-
-/* Responsive Layout */
-@media (max-width: 768px) {
-  .crafting-and-history {
-    flex-direction: column;
-  }
-  
-  .dashboard-header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-  
-  .elements-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .search-container {
-    max-width: none;
-  }
+  height: 100px;
+  color: #999;
 }

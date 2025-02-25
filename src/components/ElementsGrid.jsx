@@ -1,7 +1,7 @@
-// src/components/ElementsGrid.jsx - with drag functionality
+// src/components/ElementsGrid.jsx - COMPLETE FILE
 import React from 'react';
 
-const ElementsGrid = ({ elements, onElementClick, selectedElements }) => {
+const ElementsGrid = ({ elements, crafting }) => {
   // Get appropriate emoji based on element name
   const getElementEmoji = (element) => {
     if (element.icon && element.icon.includes('♨️🟤🌋💨⚡🌱')) return element.icon;
@@ -29,19 +29,34 @@ const ElementsGrid = ({ elements, onElementClick, selectedElements }) => {
       'beach': '🏖️',
       'train': '🚂',
       'submarine': '🚢',
-      'engine': '🔧'
+      'engine': '🔧',
+      'clay': '🏺',
+      'cloud': '☁️',
+      'wind': '🌬️',
+      'stone': '🪨',
+      'metal': '⚙️',
+      'electricity': '⚡',
+      'windmill': '🌬️',
+      'rain': '🌧️',
+      'plant': '🌱',
+      'earthquake': '🌋',
+      'storm': '🌩️',
+      'robot': '🤖',
+      'computer': '💻',
+      'ai': '🧠',
+      'james bond': '🕴️'
     };
     
     return emojiMap[name] || '🔮';
   };
-
-  // Check if an element is selected
-  const isSelected = (element) => {
-    return selectedElements && selectedElements.some(e => e._id === element._id);
-  };
   
   // Handle drag start
   const handleDragStart = (e, element) => {
+    if (crafting) {
+      e.preventDefault();
+      return;
+    }
+    
     // Set the drag data
     e.dataTransfer.setData('application/json', JSON.stringify(element));
     // Set drag effect
@@ -58,21 +73,18 @@ const ElementsGrid = ({ elements, onElementClick, selectedElements }) => {
   };
 
   return (
-    <div className="elements-grid-container">
-      <div className="elements-grid-modern">
-        {elements.map(element => (
-          <div 
-            key={element._id}
-            className={`element-item ${isSelected(element) ? 'selected' : ''}`}
-            onClick={() => onElementClick(element)}
-            draggable={true}
-            onDragStart={(e) => handleDragStart(e, element)}
-          >
-            <span className="element-emoji">{getElementEmoji(element)}</span>
-            <span className="element-name">{element.name}</span>
-          </div>
-        ))}
-      </div>
+    <div className="elements-sidebar-grid">
+      {elements.map(element => (
+        <div 
+          key={element._id}
+          className="element-item"
+          draggable={!crafting}
+          onDragStart={(e) => handleDragStart(e, element)}
+        >
+          <span className="element-emoji">{getElementEmoji(element)}</span>
+          <span className="element-name">{element.name}</span>
+        </div>
+      ))}
     </div>
   );
 };

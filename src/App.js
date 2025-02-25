@@ -1,29 +1,36 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthContext } from './contexts/AuthContext';
-import Login from './components/Login';
-import Register from './components/Register';
+// src/App.js - Fixed version
+import React from 'react';
 import Dashboard from './components/Dashboard';
+import { AuthContext } from './contexts/AuthContext';
 import './App.css';
 
 function App() {
-  const { isAuthenticated, loading } = useContext(AuthContext);
+  // Anonymous user for anyone to start playing without login
+  const currentUser = {
+    username: 'Anonymous',
+    gems: 100
+  };
+  
+  // Bypass authentication
+  const isAuthenticated = true;
+  const loading = false;
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // Mock auth functions
+  const mockAuth = {
+    currentUser,
+    isAuthenticated,
+    loading,
+    login: () => {},
+    logout: () => {},
+    register: () => {}
+  };
 
   return (
-    <Router>
+    <AuthContext.Provider value={mockAuth}>
       <div className="App">
-        <h1>World Craft</h1>
-        <Routes>
-          <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" />} />
-          <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/" />} />
-          <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
-        </Routes>
+        <Dashboard />
       </div>
-    </Router>
+    </AuthContext.Provider>
   );
 }
 
